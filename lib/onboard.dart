@@ -30,6 +30,9 @@ class _OnboradState extends State<Onborad> {
         image: Image(
             image: NetworkImage(
                 "https://i-love-png.com/images/kraken_body03_final_01.png"))),
+
+
+                
     
     // PageModel(
     //     title: "And Beautiful",
