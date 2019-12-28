@@ -1,352 +1,150 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
 
 
+class Login extends StatefulWidget {
+  @override
+  _LoginState createState() => _LoginState();
+}
+class _LoginState extends State<Login> {
+  // To adjust the layout according to the screen size
+  // so that our layout remains responsive ,we need to
+  // calculate the screen height
+  double screenHeight;
+  // Set intial mode to login
+  // AuthMode _authMode = AuthMode.LOGIN;
 
 
-class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      //  resizeToAvoidBottomPadding : false,
-      // appBar: AppBar(
-      //   title: Text("Flutter custom clipper example"),
-      // ),
-      body:          Stack(
+      body:Stack(
+        children: <Widget>[
+          new Container(
+            decoration: new BoxDecoration(image: new DecorationImage(image: new AssetImage("images/p2.jpg"), fit: BoxFit.fill)),
+          ),
+      
+      
+       SingleChildScrollView(
+        child: Stack(
           children: <Widget>[
-            ClipPath(
-               clipper: OvalBottomBorderClipper(),
-            child: Container(
-              height:MediaQuery.of(context).size.height/2,
-              color: Colors.blue,
-            ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 16,right: 16,top: 444,),
-              child: Column(
-                children: <Widget>[
-                  // Row(
-                  //   children: <Widget>[
-                  //     CircleAvatar(
-                  //       backgroundColor: Colors.white70,
-                  //       child: Text("fcdfcgfcdf"),
-                  //     ),
-                  //     SizedBox(width: 16.0),
-                  //     Expanded(
-                  //       child: Text("cdfgffdgcdfcgf dcfgfd dfgcfd",
-                  //         softWrap: true,
-                  //         // style: _questionStyle,
-                  //         ),
-                  //     ),
-                  //   ],
-                  // ),
-
-                  SizedBox(height: 20.0),
-                  Card(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        // ...options.map((option)=>
-                        
-                       TextField(
-  decoration: InputDecoration(
-    border: InputBorder.none,
-    hintText: 'Enter a search term'
-  ),
-)
-                        
-                        
-                        // ),
-                      ],
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.bottomCenter,
-                      child: RaisedButton(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20.0)
-                        ),
-                        color: Theme.of(context).primaryColor,
-                        textColor: Colors.white,
-                        child: Text( "dgvrftvfg"),
-                        // onPressed: ,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            )
+            lowerHalf(context),
+            upperHalf(context),
+            loginCard(context),
           ],
         ),
-
-      
-    
-          // ClipPath(
-          //   clipper: OvalBottomBorderClipper(),
-          //   child: Container(
-          //     height:MediaQuery.of(context).size.height/2,
-          //     color: Colors.blue,
-              
-          //     child: Center(child: Text("OvalBottomBorderClipper()")),
-          //   ),
-          // )
+      ),
+        ]
+      )
 
 
     );
   }
-}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import 'package:flutter/material.dart';
-// // import 'category.dart';
-// // import 'question.dart';
-// import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
-// // import 'quiz_finished.dart';
-
-// class Login extends StatefulWidget {
-//   // static final String path = "lib/src/pages/quiz_app/quiz_page.dart";
-//   final List<Question> questions;
-//   final Category category;
-
-//   const Login({Key key, @required this.questions, this.category}) : super(key: key);
-
-//   @override
-//   _LoginState createState() => _LoginState();
-// }
-
-// class _LoginState extends State<Login> {
-//   final TextStyle _questionStyle = TextStyle(
-//     fontSize: 18.0,
-//     fontWeight: FontWeight.w500,
-//     color: Colors.white
-//   );
-
-//   int _currentIndex = 0;
-//   final Map<int,dynamic> _answers = {};
-//   final GlobalKey<ScaffoldState> _key = GlobalKey<ScaffoldState>();
-
-
-//   @override
-//   Widget build(BuildContext context){
-//     Question question = widget.questions[_currentIndex];
-//     final List<dynamic> options = question.incorrectAnswers;
-//     if(!options.contains(question.correctAnswer)) {
-//       options.add(question.correctAnswer);
-//       options.shuffle();
-//     }
+  Widget loginCard(BuildContext context) {
     
-//     return WillPopScope(
-//       onWillPop: _onWillPop,
-//       child: Scaffold(
-//         key: _key,
-//         appBar: AppBar(
-//           backgroundColor: Colors.deepPurple,
-//           title: Text(widget.category.name),
-//           elevation: 0,
-//         ),
-//         body:
-        
-//          Stack(
-//           children: <Widget>[
-//             ClipPath(
-//               clipper: WaveClipperTwo(),
-//               child: Container(
-//                 decoration: BoxDecoration(
-//                   color: Colors.deepPurple,
-//                 ),
-//                 height: 200,
-//               ),
-//             ),
-//             Padding(
-//               padding: const EdgeInsets.all(16.0),
-//               child: Column(
-//                 children: <Widget>[
-//                   Row(
-//                     children: <Widget>[
-//                       CircleAvatar(
-//                         backgroundColor: Colors.white70,
-//                         child: Text("${_currentIndex+1}"),
-//                       ),
-//                       SizedBox(width: 16.0),
-//                       Expanded(
-//                         child: Text(widget.questions[_currentIndex].question,
-//                           softWrap: true,
-//                           style: _questionStyle,),
-//                       ),
-//                     ],
-//                   ),
-
-//                   SizedBox(height: 20.0),
-//                   Card(
-//                     child: Column(
-//                       mainAxisSize: MainAxisSize.min,
-//                       children: <Widget>[
-//                         ...options.map((option)=>RadioListTile(
-//                           title: Text("$option"),
-//                           groupValue: _answers[_currentIndex],
-//                           value: option,
-//                           onChanged: (value){
-//                             setState(() {
-//                               _answers[_currentIndex] = option;
-//                             });
-//                           },
-//                         )),
-//                       ],
-//                     ),
-//                   ),
-//                   Expanded(
-//                     child: Container(
-//                       alignment: Alignment.bottomCenter,
-//                       child: RaisedButton(
-//                         shape: RoundedRectangleBorder(
-//                           borderRadius: BorderRadius.circular(20.0)
-//                         ),
-//                         color: Theme.of(context).primaryColor,
-//                         textColor: Colors.white,
-//                         child: Text( _currentIndex == (widget.questions.length - 1) ? "Submit" : "Next"),
-//                         onPressed: _nextSubmit,
-//                       ),
-//                     ),
-//                   )
-//                 ],
-//               ),
-//             )
-//           ],
-//         ),
+    
+    return
+    
+    //  Column(
+    //   children: <Widget>[
 
 
-//       ),
-//     );
-//   }
-
-//   void _nextSubmit() {
-//     if(_answers[_currentIndex] == null) {
-//       _key.currentState.showSnackBar(SnackBar(
-//         content: Text("You must select an answer to continue."),
-//       ));
-//       return;
-//     }
-//     if(_currentIndex < (widget.questions.length - 1)){
-//       setState(() {
-//           _currentIndex++;
-//       });
-//     } else {
-//       Navigator.of(context).pushReplacement(MaterialPageRoute(
-//         // builder: (_) => print("object")
-//         // builder: (_) => QuizFinishedPage(questions: widget.questions, answers: _answers)
-//       ));
-//     }
-//   }
-
-//   Future<bool> _onWillPop() async {
-//     return showDialog<bool>(
-//       context: context,
-//       builder: (_) {
-//         return AlertDialog(
-//           content: Text("Are you sure you want to quit the quiz? All your progress will be lost."),
-//           title: Text("Warning!"),
-//           actions: <Widget>[
-//             FlatButton(
-//               child: Text("Yes"),
-//               onPressed: (){
-//                 Navigator.pop(context,true);
-//               },
-//             ),
-//             FlatButton(
-//               child: Text("No"),
-//               onPressed: (){
-//                 Navigator.pop(context,false);
-//               },
-//             ),
-//           ],
-//         );
-//       }
-//     );
-//   }
-// }
+        Container(
+          margin: EdgeInsets.only(top: screenHeight / 4),
+          padding: EdgeInsets.only(left: 15, right: 15),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            elevation: 8,
+            child: Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+               
+                  
+                  // Align(
+                  //   alignment: Alignment.topLeft,
+                  //   child: Text(
+                  //     "Login",
+                  //     style: TextStyle(
+                  //       color: Colors.black,
+                  //       fontSize: 28,
+                  //       fontWeight: FontWeight.w600,
+                  //     ),
+                  //   ),
+                  // ),
 
 
 
+                  SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        labelText: "Your Email", hasFloatingPlaceholder: true),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  TextFormField(
+                    decoration: InputDecoration(
+                        labelText: "Password", hasFloatingPlaceholder: true),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
 
-// class Category{
-//   final int id;
-//   final String name;
-//   final dynamic icon;
-//   Category(this.id, this.name, {this.icon});
+                    FlatButton(
+                        child: Text("Login"),
+                        color: Color(0xFF4B9DFE),
+                        textColor: Colors.white,
+                        padding: EdgeInsets.only(
+                            left: 38, right: 38, top: 15, bottom: 15),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(5)),
+                        onPressed: () {},
+                      ),
 
-// }
+
+                 
+
+                ],
+              ),
+            ),
+          ),
+
+      //   ),
+      // ],
+
+    );
+
+  }
 
 
 
-// enum Type {
-//   multiple,
-//   boolean
-// }
+Widget upperHalf(BuildContext context) {
+    return Container(
+      height: screenHeight/4,
+      child: Image.asset(
+        'images/flutter.png',
+        fit: BoxFit.cover,
+      ),
+    );
+  }
 
-// enum Difficulty {
-//   easy,
-//   medium,
-//   hard
-// }
 
-// class Question {
-//   final String categoryName;
-//   final Type type;
-//   final Difficulty difficulty;
-//   final String question;
-//   final String correctAnswer;
-//   final List<dynamic> incorrectAnswers;
 
-//   Question({this.categoryName, this.type, this.difficulty, this.question, this.correctAnswer, this.incorrectAnswers});
-
-//   Question.fromMap(Map<String, dynamic> data):
-//     categoryName = data["category"],
-//     type = data["type"] == "multiple" ? Type.multiple : Type.boolean,
-//     difficulty = data["difficulty"] == "easy" ? Difficulty.easy : data["difficulty"] == "medium" ? Difficulty.medium : Difficulty.hard,
-//     question = data["question"],
-//     correctAnswer = data["correct_answer"],
-//     incorrectAnswers = data["incorrect_answers"];
-
-//   static List<Question> fromData(List<Map<String,dynamic>> data){
-//     return data.map((question) => Question.fromMap(question)).toList();
-//   }
-
-// } 
+  Widget lowerHalf(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Container(
+        height: screenHeight / 2,
+        color: Color(0xFFECF0F3),
+      ),
+    );
+  }
+}
