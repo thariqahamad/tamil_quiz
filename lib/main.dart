@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:tamil_quiz/MainWidget.dart';
+import 'package:tamil_quiz/daily.dart';
 import 'package:tamil_quiz/dashboard.dart';
 import 'package:tamil_quiz/login.dart';
 import 'package:tamil_quiz/onboard.dart';
+import 'package:tamil_quiz/weekly.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+        fontFamily: "JosefinSans",
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -23,8 +27,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
+
+      darkTheme: ThemeData.dark(),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
-      home: Login(),
+      home:ScrollPage() ,
     );
   }
 }
