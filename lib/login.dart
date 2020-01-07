@@ -388,7 +388,8 @@ else if(this.button == 'Register'){
       print(email),
       print(referal),
 
-      Navigator.push(context, PageTransition(type: PageTransitionType.scale,  duration: Duration(seconds: 1), alignment: Alignment.center, child: Dashboard()))
+      // Navigator.push(context, PageTransition(type: PageTransitionType.scale,  duration: Duration(seconds: 1), alignment: Alignment.center, child: Dashboard()))
+      Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard()))
     
  }
 

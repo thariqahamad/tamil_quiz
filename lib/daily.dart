@@ -1,113 +1,16 @@
+import 'package:animated_background/animated_background.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
+
+// import 'package:flutter_multi_carousel/carousel.dart';
 
 class Daily extends StatefulWidget {
   // Daily({Key key}) : super(key: key);
   createState() => DailyState();
 }
 
-class DailyState extends State<Daily> {
-
-
-//   final Map<String, bool> score = {};
-//   /// Choices for game
-//   final Map choices = {
-//     '🍏': Colors.green,
-//     '🍋': Colors.yellow,
-//     '🍅': Colors.red,
-//     '🍇': Colors.purple,
-//     '🥥': Colors.brown,
-//     '🥕': Colors.orange
-//   };
-//   // Random seed to shuffle order of items.
-//   int seed = 0;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//           title: Text('Score ${score.length} / 6'),
-//           backgroundColor: Colors.pink),
-//       floatingActionButton: FloatingActionButton(
-//         child: Icon(Icons.refresh),
-//         onPressed: () {
-//           setState(() {
-//             score.clear();
-//             seed++;
-//           });
-//         },
-//       ),
-//       body:
-//        Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//         children: [
-//           Column(
-//               mainAxisAlignment: MainAxisAlignment.spaceAround,
-//               crossAxisAlignment: CrossAxisAlignment.end,
-//               children: choices.keys.map((emoji) {
-//                 return Draggable<String>(
-//                   data: emoji,
-//                   child: Emoji(emoji: score[emoji] == true ? "" : emoji),
-//                   feedback: Emoji(emoji: emoji),
-//                   childWhenDragging: Emoji(emoji: ""),
-//                 );
-//               }).toList()),
-//           Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             children:
-//                 choices.keys.map((emoji) => _buildDragTarget(emoji)).toList()
-//                   ..shuffle(Random(seed)),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-//   Widget _buildDragTarget(emoji) {
-//     return DragTarget<String>(
-//       builder: (BuildContext context, List<String> incoming, List rejected) {
-//       if (score[emoji] == true) {
-//           return Container(
-//             color: Colors.white,
-//             child: Text(emoji),
-//             alignment: Alignment.center,
-//             height: 80,
-//             width: 80,
-//           );
-//         } else {
-//           return Container(color: choices[emoji], height: 80, width: 80);
-//         }
-//       },
-//       // onWillAccept: (data) => data == emoji,
-//       onAccept: (data) {
-//         print(data);
-//         setState(() {
-//           score[data] = true;
-//         });
-//       },
-//       onLeave: (data) {},
-//     );
-//   }
-// }
-// class Emoji extends StatelessWidget {
-//   Emoji({Key key, this.emoji}) : super(key: key);
-//   final String emoji;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Material(
-//       color: Colors.transparent,
-//       child: Container(
-//         alignment: Alignment.center,
-//         height: 50,
-//         padding: EdgeInsets.all(10),
-//         child: Text(
-//           emoji,
-//           style: TextStyle(color: Colors.black, fontSize: 22),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
+class DailyState extends State<Daily> with TickerProviderStateMixin {
 
   List<bool> score = [
     false,
@@ -131,7 +34,7 @@ class DailyState extends State<Daily> {
     false,
   ];
 
-  List<String> choices = [
+  List<String> question = [
     '🍏',
     '🍋',
     '🍅',
@@ -143,10 +46,12 @@ class DailyState extends State<Daily> {
   ];
 
   List<String> answer = [
-   'a',
+
+                'a',
                 'b',
                 'c',
                 'd',
+
   ];
   List<MaterialColor> colors = [
     Colors.green,
@@ -160,7 +65,14 @@ class DailyState extends State<Daily> {
     Colors.red,
     Colors.purple,
   ];
+
+
   int seed = 0;
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -202,15 +114,41 @@ class DailyState extends State<Daily> {
             });
           },
         ),
-        body: Align(
-          child: Column(
+        body:
+        AnimatedBackground(
+  behaviour: RandomParticleBehaviour(
+    options: ParticleOptions(baseColor: Colors.green,
+
+    spawnOpacity: 0.1,
+    opacityChangeRate: 0.25,
+    minOpacity: 0.1,
+    maxOpacity: 0.4,
+    spawnMinSpeed: 10.0,
+    spawnMaxSpeed: 40.0,
+    spawnMinRadius: 3.0,
+    spawnMaxRadius: 10.0,
+    particleCount: 30,)
+  ),
+
+  vsync: this,
+  child: 
+
+
+CarouselSlider(
+  height: 400.0,
+
+  items: [1,2,3,4,5].map((i) {
+    return Align(
+          child:
+           Column(
             children: <Widget>[
               SizedBox(
                 height: 40,
               ),
               Text(
-                "1. This is the question This is the question This is the question This is the question",
+                "1) This is the question This is the question This is the question This is the question",
                 textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 25),
               ),
               SizedBox(
                 height: 40,
@@ -220,28 +158,25 @@ class DailyState extends State<Daily> {
                   children:
                       answer.map((emoji) => _buildDragTarget(emoji)).toList()),
               SizedBox(
-                height: 40,
+                height: 22,
               ),
  new Expanded(
       child:
-      
-    
-
     GridView.count(
           // Create a grid with 2 columns. If you change the scrollDirection to
           // horizontal, this produces 2 rows.
           crossAxisCount: 4,
-          padding: EdgeInsets.all(50),
+          padding: EdgeInsets.all(20),
           crossAxisSpacing: 30,
           mainAxisSpacing: 30,
           // Generate 100 widgets that display their index in the List.
-          children: List.generate(choices.length, (index) {
+          children: List.generate(question.length, (index) {
             return 
  Draggable<String>(
-                              data: choices[index],
+                              data: question[index],
                               child: Emoji(
-                                  emoji:score_ans[index] == true ? " " : choices[index],color: Colors.indigo,),
-                              feedback: Emoji(emoji: choices[index],color: Colors.indigo,),
+                                  emoji:score_ans[index] == true ? " " : question[index],color: Colors.indigo,),
+                              feedback: Emoji(emoji: question[index],color: Colors.indigo,),
                               childWhenDragging: Emoji(emoji: "",color: Colors.yellow,),
                               onDragCompleted: () {
                                 setState(() {
@@ -252,8 +187,6 @@ class DailyState extends State<Daily> {
 
           }),
         ),
-
-
     ),
 
     
@@ -271,11 +204,11 @@ class DailyState extends State<Daily> {
 //             );
 
 // //  Draggable<String>(
-// //                               data: choices[index],
+// //                               data: question[index],
 // //                               child: Emoji(
 // //                                   emoji:
-// //                                       score_ans[index] == true ? " " : choices[index]),
-// //                               feedback: Emoji(emoji: choices[index]),
+// //                                       score_ans[index] == true ? " " : question[index]),
+// //                               feedback: Emoji(emoji: question[index]),
 // //                               childWhenDragging: Emoji(emoji: ""),
 // //                               onDragCompleted: () {
 // //                                 setState(() {
@@ -292,7 +225,35 @@ class DailyState extends State<Daily> {
 
             ],
           ),
-        ));
+        );
+  }).toList(),
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+)
+        
+        
+        
+        
+        
+        
+
+        
+        
+        
+        );
   }
 
   Widget _buildDragTarget(emoji) {
@@ -310,7 +271,7 @@ class DailyState extends State<Daily> {
         );
       },
       onWillAccept: (data) {
-        return !score[answer.indexOf(emoji)];
+        return (!score[answer.indexOf(emoji)] ||  !score_ans[answer.indexOf(emoji)]);
       },
       onAccept: (data) {
         print(data);

@@ -118,13 +118,13 @@
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
 
-class ScrollPage extends StatefulWidget {
-  ScrollPage({Key key}) : super(key: key);
+class Weekly extends StatefulWidget {
+  Weekly({Key key}) : super(key: key);
   @override
-  _ScrollPageState createState() => _ScrollPageState();
+  _WeeklyState createState() => _WeeklyState();
 }
 
-class _ScrollPageState extends State<ScrollPage>
+class _WeeklyState extends State<Weekly>
     with SingleTickerProviderStateMixin {
   RubberAnimationController _controller;
   ScrollController _scrollController = ScrollController();
@@ -136,21 +136,24 @@ class _ScrollPageState extends State<ScrollPage>
     false,
     false,
     false,
-    false,false,
     false,
     false,
     false,
     false,
     false,
     false,
-    false,false,
     false,
     false,
     false,
     false,
     false,
     false,
-    false,false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
     false,
     false,
     false,
@@ -275,12 +278,7 @@ class _ScrollPageState extends State<ScrollPage>
 
       body: RubberBottomSheet(
         scrollController: _scrollController,
-        lowerLayer: _getLowerLayer(),
-          
-        
-        
-        
-        
+        lowerLayer: _listView(context),
        
         header: Container(
           // color: Colors.yellow,
@@ -298,12 +296,13 @@ class _ScrollPageState extends State<ScrollPage>
           decoration: BoxDecoration(
             color: Colors.indigo[900],
             borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(100),
-              topRight: Radius.circular(100),
+              topLeft: Radius.circular(60),
+              topRight: Radius.circular(60),
             ),
           ),
         ),
         headerHeight: 70,
+        // upperLayer: _listView(),
         upperLayer: _getUpperLayer(),
         animationController: _controller,
       ),
@@ -316,30 +315,36 @@ class _ScrollPageState extends State<ScrollPage>
         new Expanded(
       child:  GridView.count(
           crossAxisCount: 5,
-          padding: EdgeInsets.all(25),
+          padding: EdgeInsets.all(35),
           crossAxisSpacing: 4,
           mainAxisSpacing: 4,
           children: List.generate(choices.length, (index) {
-            return Draggable<String>(
-              data: choices[index],
-              child: Emoji(
-                emoji: score_ans[index] == true ? " " : choices[index],
-                color: Colors.indigo,
-              ),
-              feedback: Emoji(
-                emoji: choices[index],
-                color: Colors.indigo,
-              ),
-              childWhenDragging: Emoji(
-                emoji: "",
-                color: Colors.yellow,
-              ),
-              onDragCompleted: () {
-                setState(() {
-                  score_ans[index] = true;
-                });
-              },
-            );
+            return DragTarget<String>(
+      builder: (BuildContext context, List<String> incoming, List rejected) {
+        return Container(
+          color: (score[index] == true)
+              ? Colors.green[700]
+              : Colors.grey,
+          child:
+              (score[index] == true) ? Text(choices[index]) : Text(""),
+          alignment: Alignment.center,
+          height: 50,
+          width: 50,
+        );
+      },
+      onWillAccept: (data) {
+        return (!score[index] ||  !score_ans[index]);
+      },
+      onAccept: (data) {
+        print(data);
+        setState(() {
+          score[index] = true;
+          answer[index] = data;
+        });
+      },
+      onLeave: (data) {},
+    );
+
           }),
         )
 
@@ -347,7 +352,8 @@ class _ScrollPageState extends State<ScrollPage>
 
 
           new Expanded(
-      child:  GridView.count(
+
+      child: GridView.count(
           crossAxisCount: 7,
           padding: EdgeInsets.all(25),
           crossAxisSpacing: 10,
@@ -380,6 +386,50 @@ class _ScrollPageState extends State<ScrollPage>
 
       ],
     );
+  }
+
+
+  Widget _listView(context){
+
+    return 
+
+
+ListView(
+  children: <Widget>[
+
+// new Expanded(
+//    child:
+// new GridView.builder(
+//     itemCount: 4,
+//     gridDelegate:
+//       new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+//     itemBuilder: (BuildContext context, int index) {
+//       return Text("q");
+//     })
+
+// ),
+
+
+// ListView.builder(
+//   itemCount: 6,
+//   itemBuilder: (BuildContext context, i) {
+//     return ListTile(
+//           title: Text(i.toString()),
+//         );
+//    },
+// ),
+
+Text("data"),
+Text("data"),
+Text("data"),
+Text("data"),
+
+
+
+  ],
+);
+
+
   }
 
   Widget _getUpperLayer() {
