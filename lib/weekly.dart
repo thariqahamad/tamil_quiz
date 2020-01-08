@@ -1,120 +1,3 @@
-// import 'package:flutter/material.dart';
-// import 'package:rubber/rubber.dart';
-// class DefaultPage extends StatefulWidget {
-//   DefaultPage({Key key}) : super(key: key);
-//   @override
-//   _DefaultPageState createState() => _DefaultPageState();
-// }
-// class _DefaultPageState extends State<DefaultPage> with SingleTickerProviderStateMixin {
-//   RubberAnimationController _controller;
-//   @override
-//   void initState() {
-//     _controller = RubberAnimationController(
-//         vsync: this,
-//         halfBoundValue: AnimationControllerValue(percentage: 0.5),
-//         lowerBoundValue: AnimationControllerValue(pixel: 200),
-//         duration: Duration(milliseconds: 200)
-//     );
-//     _controller.addStatusListener(_statusListener);
-//     _controller.animationState.addListener(_stateListener);
-//     super.initState();
-//   }
-//   @override
-//   void dispose() {
-//     _controller.removeStatusListener(_statusListener);
-//     _controller.animationState.removeListener(_stateListener);
-//     super.dispose();
-//   }
-//   void _stateListener() {
-//     print("state changed ${_controller.animationState.value}");
-//   }
-//   void _statusListener(AnimationStatus status) {
-//     print("changed status ${_controller.status}");
-//   }
-//   void _expand() {
-//     _controller.expand();
-//   }
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Weekly",style: TextStyle(color: Colors.cyan[900]),),
-//       ),
-//       body: RubberBottomSheet(
-//           headerHeight: 60,
-//            header: Container(
-//             color: Colors.yellow,
-//           ),
-//           lowerLayer: _getLowerLayer(),
-//           upperLayer: _getUpperLayer(),
-//           animationController: _controller,
-//         ),
-//       // floatingActionButton: Column(
-//       //   mainAxisSize: MainAxisSize.min,
-//       //   children: <Widget>[
-//       //     FloatingActionButton(
-//       //       heroTag: "flt1",
-//       //       onPressed: () {
-//       //         _controller.setVisibility(!_controller.visibility.value);
-//       //       },
-//       //       backgroundColor: Colors.cyan[900],
-//       //       foregroundColor: Colors.cyan[400],
-//       //       child: Icon(Icons.visibility),
-//       //     ),
-//       //     Container(
-//       //       margin: EdgeInsets.only(top: 20.0),
-//       //       child: FloatingActionButton(
-//       //         heroTag: "flt2",
-//       //         onPressed: _expand,
-//       //         backgroundColor: Colors.cyan[900],
-//       //         foregroundColor: Colors.cyan[400],
-//       //         child: Icon(Icons.vertical_align_top),
-//       //       ),
-//       //     ),
-//       //   ],
-//       // ),
-//     );
-//   }
-//   Widget _getLowerLayer() {
-//   return
-//   //  Container(
-//   //    child:
-//      Column(
-//        children: <Widget>[
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//       Text("data"),
-//       Text("yuiy"),
-//       Text("dathgh"),
-//    ]
-//   //  )
-//    );
-//   }
-//   Widget _getUpperLayer() {
-//     return Container(
-//       decoration: BoxDecoration(
-//           color: Colors.cyan,
-//              borderRadius: BorderRadius.only(
-//                     topLeft: Radius.circular(50),
-//                     topRight: Radius.circular(50),
-//                   ),
-//       ),
-//     );
-//   }
-// }
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
 
@@ -126,9 +9,13 @@ class Weekly extends StatefulWidget {
 
 class _WeeklyState extends State<Weekly>
     with SingleTickerProviderStateMixin {
+
+
   RubberAnimationController _controller;
   ScrollController _scrollController = ScrollController();
   List<bool> score = [
+   
+   
     false,
     false,
     false,
@@ -161,8 +48,11 @@ class _WeeklyState extends State<Weekly>
     false,
     false,
     false,
+
   ];
+
   List<bool> score_ans = [
+   
     false,
     false,
     false,
@@ -170,21 +60,6 @@ class _WeeklyState extends State<Weekly>
     false,
     false,
     false,
-    false,false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,false,
     false,
     false,
     false,
@@ -192,33 +67,55 @@ class _WeeklyState extends State<Weekly>
     false,
     false,
     false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+
   ];
+
   List<String> choices = [
-    '🍏',
-    '🍋',
-    '🍅',
-    '🍇',
-    '🥥',
-    '🥕',
-    '😊',
-    '🥙',
-    '🍇',
-    '🥥',
-    '🥕',
-    '😊',
-    '🥙',
-    '🍇',
-    '🥥',
-    '🥕',
-    '😊',
-    '🥙',
-    '🍇',
-    '🥥',
-    '🥕',
-    '😊',
-    '🥙',
-    '🍇',
-    '🥥',
+    
+    'அ',
+    'த',
+    'நி',
+    'ரு',
+    'தை',
+    'கி',
+    'மெ',
+    'வா',
+    'டு',
+    'சி',
+    'வே',
+    'க்',
+    'ரி',
+    'மு',
+    'ண்',
+    'ற்',
+    'பூ',
+    'ளி',
+    'எ',
+    'ட',
+    'மி',
+    'ல்',
+    'ய',
+    'மா',
+    'ல',
+
   ];
 
   List<String> answer = [
@@ -228,31 +125,34 @@ class _WeeklyState extends State<Weekly>
     '',
     '',
     '',
+     
     '',
     '',
     '',
     '',
     '',
+     
     '',
     '',
     '',
     '',
     '',
+     
     '',
+    '',
+    '',
+    '',
+    '',
+     
+    '',
+    '',
+    '',
+    '',
+    '',
+    
 
   ];
-  List<MaterialColor> colors = [
-    Colors.green,
-    Colors.yellow,
-    Colors.red,
-    Colors.purple,
-    Colors.brown,
-    Colors.orange,
-    Colors.green,
-    Colors.yellow,
-    Colors.red,
-    Colors.purple,
-  ];
+
   @override
   void initState() {
     _controller = RubberAnimationController(
@@ -268,17 +168,18 @@ class _WeeklyState extends State<Weekly>
     return Scaffold(
 
 
-      appBar: AppBar(
-        title: Text(
-          "Weekly",
-          style: TextStyle(color: Colors.cyan[900]),
-        ),
-      ),
+      // appBar: AppBar(
+      //   title: Text(
+      //     "Weekly",
+      //     style: TextStyle(color: Colors.cyan[900]),
+      //   ),
+      // ),
+      // SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values),
 
 
       body: RubberBottomSheet(
         scrollController: _scrollController,
-        lowerLayer: _listView(context),
+        lowerLayer: _listView(),
        
         header: Container(
           // color: Colors.yellow,
@@ -309,13 +210,20 @@ class _WeeklyState extends State<Weekly>
     );
   }
 
-  Widget _getLowerLayer() {
-    return Column(
-      children: <Widget>[
-        new Expanded(
-      child:  GridView.count(
+
+
+  Widget _listView(){
+
+    return 
+
+
+ListView(
+  children: <Widget>[
+
+   GridView.count(
+     shrinkWrap: true,
           crossAxisCount: 5,
-          padding: EdgeInsets.all(35),
+          padding: EdgeInsets.only(right: 55,left: 55,top: 22,bottom: 10),
           crossAxisSpacing: 4,
           mainAxisSpacing: 4,
           children: List.generate(choices.length, (index) {
@@ -346,15 +254,11 @@ class _WeeklyState extends State<Weekly>
     );
 
           }),
-        )
-
         ),
 
-
-          new Expanded(
-
-      child: GridView.count(
-          crossAxisCount: 7,
+  GridView.count(
+    shrinkWrap: true,
+          crossAxisCount: 8,
           padding: EdgeInsets.all(25),
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
@@ -381,49 +285,6 @@ class _WeeklyState extends State<Weekly>
             );
           }),
         )
-
-        )
-
-      ],
-    );
-  }
-
-
-  Widget _listView(context){
-
-    return 
-
-
-ListView(
-  children: <Widget>[
-
-// new Expanded(
-//    child:
-// new GridView.builder(
-//     itemCount: 4,
-//     gridDelegate:
-//       new SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-//     itemBuilder: (BuildContext context, int index) {
-//       return Text("q");
-//     })
-
-// ),
-
-
-// ListView.builder(
-//   itemCount: 6,
-//   itemBuilder: (BuildContext context, i) {
-//     return ListTile(
-//           title: Text(i.toString()),
-//         );
-//    },
-// ),
-
-Text("data"),
-Text("data"),
-Text("data"),
-Text("data"),
-
 
 
   ],
@@ -457,6 +318,9 @@ Text("data"),
     );
   }
 
+
+
+
   Widget _buildDragTarget(emoji) {
     return DragTarget<String>(
       builder: (BuildContext context, List<String> incoming, List rejected) {
@@ -484,6 +348,9 @@ Text("data"),
       onLeave: (data) {},
     );
   }
+
+
+
 }
 
 class Emoji extends StatelessWidget {
@@ -507,6 +374,8 @@ class Emoji extends StatelessWidget {
   }
 }
 
+
+
 class Word extends StatelessWidget {
   Word({Key key, this.emoji, this.color}) : super(key: key);
   final String emoji;
@@ -517,11 +386,11 @@ class Word extends StatelessWidget {
       color: Colors.teal,
       child: Container(
         alignment: Alignment.center,
-        height: 20,
+        height: 60,
         padding: EdgeInsets.all(5),
         child: Text(
           emoji,
-          style: TextStyle(color: Colors.black, fontSize: 22),
+          style: TextStyle(color: Colors.black, fontSize: 12),
         ),
       ),
     );

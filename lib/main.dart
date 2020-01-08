@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-
+debugShowCheckedModeBanner: false,
       darkTheme: ThemeData.dark(),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
       home:Weekly(),
